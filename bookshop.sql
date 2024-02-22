@@ -38,7 +38,8 @@ CREATE TABLE book_favourite(
     book_id INT NOT NULL,
     
     FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (book_id) REFERENCES books(id)
+    FOREIGN KEY (book_id) REFERENCES books(id),
+    UNIQUE KEY user_book_unique (user_id, book_id)
 );
 
 CREATE TABLE loans(
@@ -50,6 +51,7 @@ CREATE TABLE loans(
     return_date DATETIME ON UPDATE current_timestamp,
     
     FOREIGN KEY (user_id) REFERENCES users(id),
-    FOREIGN KEY (book_id) REFERENCES books(id)
+    FOREIGN KEY (book_id) REFERENCES books(id),
+    UNIQUE KEY user_book_unique (user_id, book_id, loan_date)
 );
 
